@@ -1,0 +1,19 @@
+<!-- Example for instance methods -->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="practice-code-one">
+  <template>
+    The function is called and the output printed in the console
+  </template>
+  <script>
+    MyElement = Polymer({
+      is: "practice-code-one",
+      newFunction: function (a, b) {
+        this.a = a;
+        this.b = b;
+        console.log(`The value of a is ${this.a}\nThe value of b is ${this.b}`);
+      },
+    });
+  </script>
+</dom-module>

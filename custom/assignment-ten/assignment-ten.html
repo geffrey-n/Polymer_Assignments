@@ -1,0 +1,94 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="stylesheet" href="./assignment-ten.css" />
+
+<dom-module id="assignment-ten">
+  <style>
+    #enitre_details {
+      border: 2px black dotted;
+      margin: 3px;
+      padding: 3px;
+    }
+    #particular_detail {
+      border: 2px black solid;
+      margin: 3px;
+      padding: 3px;
+    }
+    div {
+      font-size: 2vw;
+      padding: 5px;
+    }
+    input {
+      border: 2px black solid;
+    }
+    label {
+      font-style: italic;
+    }
+  </style>
+  <template>
+    <div id="enitre_details">
+      <div id="particular_detail">
+        <div>Student Name:<span>{{name}}</span></div>
+        <div>
+          <label>Enter the mark in subject 1:</label>
+          <input value="{{mark1::input}}" />
+        </div>
+        <div>
+          <label>Enter the mark in subject 2:</label>
+          <input value="{{mark2::input}}" />
+        </div>
+        <div>
+          Mark of the student in subject 1:
+          <span class$="[[_computedClassName(mark1)]]">{{mark1}}</span>
+        </div>
+        <div>
+          Mark of the student in subject 2:
+          <span class$="[[_computedClassName(mark2)]]">{{mark2}}</span>
+        </div>
+        <div>
+          Total Marks of {{name}}:
+          <span> {{totalMark}}</span>
+        </div>
+        <div>
+          Average of {{name}}:
+          <span> {{averageMark}}</span>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-ten",
+      properties: {
+        name: {
+          type: String,
+          value: "Geffrey",
+        },
+        mark1: {
+          type: Number,
+          value: 0,
+        },
+        mark2: {
+          type: Number,
+          value: 0,
+        },
+        totalMark: {
+          computed: "_totalMark(mark1,mark2)",
+        },
+        averageMark: {
+          computed: "_averageMark(totalMark)",
+        },
+      },
+      _computedClassName: function (mark) {
+        return mark < 60 ? "redClass" : "greenClass";
+      },
+      _totalMark: function (mark1, mark2) {
+        var subject1 = parseInt(mark1);
+        var subject2 = parseInt(mark2);
+        return subject1 + subject2;
+      },
+      _averageMark: function (total) {
+        return total / 2;
+      },
+    });
+  </script>
+</dom-module>

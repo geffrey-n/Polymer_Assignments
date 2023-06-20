@@ -1,0 +1,15 @@
+#student_details {
+  background-color: skyblue;
+  font-size: 2vw;
+  border-collapse: collapse;
+}
+table {
+  width: 100%;
+  border: 2px solid;
+  text-align: center;
+}
+
+th,
+td {
+  border: 2px solid;
+}

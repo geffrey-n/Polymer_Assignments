@@ -1,0 +1,162 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="stylesheet" href="./main-element.css" />
+<!-- ************************************************************** -->
+<link
+  rel="import"
+  href="../../bower_components/hello-world-element/hello-world.html"
+/>
+<link rel="import" href="../assignment-two/assignment-two.html" />
+<link rel="import" href="../assignment-three/assignment-three.html" />
+<link rel="import" href="../assignment-four/assignment-four.html" />
+<link rel="import" href="../assignment-five/assignment-five.html" />
+<link rel="import" href="../assignment-six/assignment-six.html" />
+<link rel="import" href="../assignment-seven/assignment-seven.html" />
+<link rel="import" href="../assignment-eight/assignment-eight.html" />
+<link rel="import" href="../assignment-nine/assignment-nine_one.html" />
+<link rel="import" href="../assignment-nine/assignment-nine_two.html" />
+<link rel="import" href="../assignment-nine/assignment-nine_three.html" />
+<link rel="import" href="../assignment-ten/assignment-ten.html" />
+<link rel="import" href="../assignment-eleven/assignment-eleven.html" />
+<!-- ************************************************************** -->
+<link rel="import" href="../practice-code-one/practice-code-one.html" />
+<link rel="import" href="../practice-code-two/practice-code-two.html" />
+<link rel="import" href="../practice-code-three/practice-code-three.html" />
+<link rel="import" href="../practice-code-four/practice-code-four.html" />
+<link rel="import" href="../practice-code-five/practice-code-five.html" />
+<link rel="import" href="../practice-code-six/practice-code-six.html" />
+<link rel="import" href="../practice-code-seven/practice-code-seven.html" />
+<link rel="import" href="../practice-code-eight/practice-code-eight.html" />
+<dom-module id="main-element">
+  <style>
+    div {
+      font-size: 2vw;
+    }
+  </style>
+  <template>
+    <!-- ************************************************************** -->
+    <!-- Calling the hello-world-element component - Assignment - 1 -->
+    <h4>Assignment 1:</h4>
+    <hello-world id="assignment_one"> </hello-world>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 2 -->
+    <h4>Assignment 2:</h4>
+    <assignment-two></assignment-two>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 3 -->
+    <h4>Assignment 3:</h4>
+    <assignment-three
+      first-name="McKenzie"
+      last-name="Geffrey"
+      stud-Id="037"
+      sports-quota
+    ></assignment-three>
+    <assignment-three
+      first-name="Geffrey"
+      last-name="Nirmal"
+      stud-Id="047"
+    ></assignment-three>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 4 -->
+    <h4>Assignment 4:</h4>
+    <assignment-four> </assignment-four>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 5 -->
+    <h4>Assignment 5:</h4>
+    <assignment-five></assignment-five>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 6 -->
+    <!-- Over riding the styles from Shadow DOM FOR ASSIGNMENT-SIX -->
+    <style>
+      assignment-six::shadow #assignment-six {
+        color: darkorange;
+      }
+    </style>
+    <h4>Assignment 6:</h4>
+    <assignment-six> </assignment-six>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 6 -->
+    <h4>Assignment 7:</h4>
+    <assignment-seven
+      student-name="Geffrey"
+      student-id="001"
+      student-department="ECE"
+      teacher-name="McKenzie"
+      teacher-id="007"
+      teacher-department="ECE"
+    ></assignment-seven>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 8 -->
+    <h4>Assignment 8:</h4>
+    <assignment-eight></assignment-eight>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 9 -->
+    <h4>Assignment 9:</h4>
+    <h2>Simple Observer:</h2>
+    <assignment-nine_one></assignment-nine_one>
+    <h2>Complex Observer:</h2>
+    <assignment-nine_two></assignment-nine_two>
+    <h2>Computed Property:</h2>
+    <assignment-nine_three></assignment-nine_three>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 10 -->
+    <h4>Assignment 10:</h4>
+    <assignment-ten></assignment-ten>
+    <h3>******************************************</h3>
+    <!-- Calling the custom element - Assignment - 11 -->
+    <h4>Assignment 11:</h4>
+    <assignment-eleven></assignment-eleven>
+    <h3>******************************************</h3>
+    <!-- Calling the practice codes -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-one></practice-code-one> -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-two></practice-code-two> -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-three>
+      <h1 id="name">Polymer</h1>
+      <h6>
+        This is an example of content element in polymer
+      </h6></practice-code-three
+    > -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-four></practice-code-four> -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-five></practice-code-five> -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-six></practice-code-six> -->
+    <!-- ************************************************************** -->
+    <!-- <practice-code-seven></practice-code-seven> -->
+    <!-- ************************************************************** -->
+    ******************************************#################################################
+    <practice-code-eight></practice-code-eight>
+  </template>
+  <script>
+    Polymer({
+      is: "main-element",
+      attached: function () {
+        // ***************************** Assignment 4 ************************
+        var instance = document.querySelector("assignment-four");
+        instance.studentDetails();
+        // ***************************** Assignment 7 ************************
+        var clickButton = document.querySelector("assignment-seven");
+        clickButton.addEventListener("student_click", function () {
+          if (clickButton.$.student_list.style.display === "")
+            clickButton.$.student_list.style.display = "block";
+          else if (clickButton.$.student_list.style.display == "block")
+            clickButton.$.student_list.style.display = "";
+        });
+        clickButton.addEventListener("teacher_click", function () {
+          if (clickButton.$.teacher_list.style.display === "")
+            clickButton.$.teacher_list.style.display = "block";
+          else if (clickButton.$.teacher_list.style.display == "block")
+            clickButton.$.teacher_list.style.display = "";
+        });
+      },
+      // ***************************** Practice Code One ************************
+      // attached: function () {
+      //   var instance = document.querySelector("practice-code-one");
+      //   instance.newFunction(17, 03);
+      // },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,22 @@
+<!-- Example of using the preserve-content -->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="practice-code-four">
+  <template>
+    Check the element for the updates
+    <template id="nested-template" preserve-content>
+      This is an example for nested template
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: "practice-code-four",
+      ready: function () {
+        // retrieve the nested template
+        var template = Polymer.dom(this.root).querySelector("#nested-template");
+        template.textContent = "Hello";
+      },
+    });
+  </script>
+</dom-module>

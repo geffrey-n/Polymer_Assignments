@@ -1,0 +1,118 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="assignment-seven">
+  <template>
+    <style>
+      #student_list,
+      #teacher_list,
+      #teacher-lucky,
+      #student-lucky {
+        display: none;
+      }
+      #button,
+      #details {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      label {
+        color: Blue;
+        font-size: 2.3vw;
+        font-style: italic;
+      }
+      ul {
+        color: lightseagreen;
+        font-size: 2vw;
+      }
+      button {
+        font-size: 2vw;
+      }
+    </style>
+    <div id="button">
+      <button id="student_button" on-click="studentClick">
+        Student Details
+      </button>
+      <button id="teacher_button" on-click="teacherClick">
+        Teacher Details
+      </button>
+    </div>
+    <div id="details">
+      <div id="student_list">
+        <ul>
+          <label><u>Student Details</u></label>
+          <li>Student Name : {{studentName}}</li>
+          <li>Student Id : {{studentId}}</li>
+          <li>Student Department : {{studentDepartment}}</li>
+          <li id="student-lucky">Lucky Number: {{studentLuckyNumber}}</li>
+        </ul>
+        <button on-click="getStudentLuckyNumber">
+          Get student Lucky Number
+        </button>
+      </div>
+      <div id="teacher_list">
+        <ul>
+          <label><u>Teacher Details</u></label>
+          <li>Teacher Name : {{teacherName}}</li>
+          <li>Teacher Id : {{teacherId}}</li>
+          <li>Teacher Department : {{teacherDepartment}}</li>
+          <li id="teacher-lucky">Lucky Number: {{teacherLuckyNumber}}</li>
+        </ul>
+        <button on-click="getTeacherLuckyNumber">
+          Get Teacher Lucky Number
+        </button>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-seven",
+      properties: {
+        studentName: {
+          type: String,
+        },
+        studentId: {
+          type: Number,
+        },
+        studentDepartment: {
+          type: String,
+        },
+        studentLuckyNumber: {
+          type: Number,
+          value: 0,
+        },
+        teacherName: {
+          type: String,
+        },
+        teacherId: {
+          type: Number,
+        },
+        teacherDepartment: {
+          type: String,
+        },
+        teacherLuckyNumber: {
+          type: Number,
+          value: 0,
+        },
+      },
+      studentClick: function () {
+        this.fire("student_click");
+      },
+      teacherClick: function () {
+        this.fire("teacher_click");
+      },
+      createLuckyNumber: function (num, name) {
+        var luckyNumber = (num * 10) / 2;
+        return luckyNumber;
+      },
+      getStudentLuckyNumber: function () {
+        var randomNumber = Math.random() * 100;
+        this.set("studentLuckyNumber", parseInt(randomNumber));
+        document.getElementById("student-lucky").style.display = "block";
+      },
+      getTeacherLuckyNumber: function () {
+        var randomNumber = Math.random() * 100;
+        this.set("teacherLuckyNumber", parseInt(randomNumber));
+        document.getElementById("teacher-lucky").style.display = "block";
+      },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,367 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="practice-code-seven">
+  <template>
+    <style>
+      .studentLuckyNumber,
+      .teacherLuckyNumber {
+        display: none;
+      }
+      h1,
+      h3 {
+        text-align: center;
+      }
+      label {
+        font-size: 20px;
+      }
+      div {
+        padding: 0.7vw;
+      }
+      #details-student-sort-name,
+      #details-student-sort-id,
+      #details-teacher-sort-name,
+      #details-teacher-sort-id {
+        display: none;
+      }
+    </style>
+    <h1>Student and Teacher Details</h1>
+    <div id="entire_details">
+      <div id="details-student">
+        <h2>Student List</h2>
+        <template is="dom-repeat" items="{{students_details}}" as="student">
+          <ul>
+            <li>Name: {{student.name}}</li>
+            <li>ID: {{student.id}}</li>
+            <li>Department:{{student.department}}</li>
+            <li class="studentLuckyNumber">
+              The Lucky Number of {{student.name}} is {{student.luckyNumber}}
+            </li>
+            <button class="studentButton" on-click="getStudentLuckyNumber">
+              Get lucky number for {{student.name}}
+            </button>
+          </ul>
+        </template>
+      </div>
+      <div id="details-teacher">
+        <h2>Teacher Details</h2>
+        <template is="dom-repeat" items="{{teachers_details}}" as="teacher">
+          <ul>
+            <li>Name: {{teacher.name}}</li>
+            <li>ID: {{teacher.id}}</li>
+            <li>Department:{{teacher.department}}</li>
+            <li class="teacherLuckyNumber">
+              The Lucky Number of {{teacher.name}} is {{teacher.luckyNumber}}
+            </li>
+            <button class="teacherButton" on-click="getTeacherLuckyNumber">
+              Get lucky number for {{teacher.name}}
+            </button>
+          </ul>
+        </template>
+      </div>
+    </div>
+    <h3>*************************************************</h3>
+    <h1>Filtered Student and Teacher Details</h1>
+    <div id="filteredDetails">
+      <div id="details-student-filter">
+        <h2>Filtered Students Details</h2>
+        <template
+          is="dom-repeat"
+          items="{{students_details}}"
+          as="student"
+          filter="filterStudentFunction"
+        >
+          <ul>
+            <li>Name: {{student.name}}</li>
+            <li>ID: {{student.id}}</li>
+            <li>Department:{{student.department}}</li>
+          </ul>
+        </template>
+      </div>
+      <div id="details-teacher-filter">
+        <h2>Filtered Teachers Details</h2>
+        <template
+          is="dom-repeat"
+          items="{{teachers_details}}"
+          as="teacher"
+          filter="filterTeacherFunction"
+        >
+          <ul>
+            <li>Name: {{teacher.name}}</li>
+            <li>ID: {{teacher.id}}</li>
+            <li>Department:{{teacher.department}}</li>
+          </ul>
+        </template>
+      </div>
+    </div>
+    <h3>*************************************************</h3>
+    <h1>Search Student and Teacher Details</h1>
+    <div id="searchDetails">
+      <div id="details-student-search">
+        <label>Search for Student:</label>
+        <input value="{{searchStudentName::input}}" />
+        <h2>Searched Students Details</h2>
+        <template
+          is="dom-repeat"
+          items="{{students_details}}"
+          as="student"
+          filter="{{searchStudentFunction(searchStudentName)}}"
+        >
+          <ul>
+            <li>Name: {{student.name}}</li>
+            <li>ID: {{student.id}}</li>
+            <li>Department:{{student.department}}</li>
+          </ul>
+        </template>
+      </div>
+      <div id="details-teacher-search">
+        <label>Search for Teacher:</label>
+        <input value="{{searchTeacherName::input}}" />
+        <h2>Searched Teachers Details</h2>
+        <template
+          is="dom-repeat"
+          items="{{teachers_details}}"
+          as="teacher"
+          filter="{{searchTeacherFunction(searchTeacherName)}}"
+        >
+          <ul>
+            <li>Name: {{teacher.name}}</li>
+            <li>ID: {{teacher.id}}</li>
+            <li>Department:{{teacher.department}}</li>
+          </ul>
+        </template>
+      </div>
+    </div>
+    <h3>*************************************************</h3>
+
+    <h1>Sort Student and Teacher Details</h1>
+    <label>Student Details Sort: </label>
+    <button id="name-sort-student" on-click="studentSortName">Name Sort</button>
+    <button id="id-sort-student" on-click="studentSortId">Id Sort</button>
+    <div id="details-student-sort">
+      <h2>Student List</h2>
+      <template is="dom-repeat" items="{{students_details}}" as="student">
+        <ul>
+          <li>Name: {{student.name}}</li>
+          <li>ID: {{student.id}}</li>
+          <li>Department:{{student.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <div id="details-student-sort-id">
+      <h2>Sorted Students Details</h2>
+      <template
+        is="dom-repeat"
+        items="{{students_details}}"
+        as="student"
+        sort="idSortFunction"
+      >
+        <ul>
+          <li>Name: {{student.name}}</li>
+          <li>ID: {{student.id}}</li>
+          <li>Department:{{student.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <div id="details-student-sort-name">
+      <h2>Sorted Students Details</h2>
+      <template
+        is="dom-repeat"
+        items="{{students_details}}"
+        as="student"
+        sort="nameSortFunction"
+      >
+        <ul>
+          <li>Name: {{student.name}}</li>
+          <li>ID: {{student.id}}</li>
+          <li>Department:{{student.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <label>Teacher Details Sort: </label>
+    <button id="name-sort-teacher" on-click="teacherSortName">Name Sort</button>
+    <button id="id-sort-teacher" on-click="teacherSortId">Id Sort</button>
+    <div id="details-teacher-sort">
+      <h2>Teacher Details</h2>
+      <template is="dom-repeat" items="{{teachers_details}}" as="teacher">
+        <ul>
+          <li>Name: {{teacher.name}}</li>
+          <li>ID: {{teacher.id}}</li>
+          <li>Department:{{teacher.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <div id="details-teacher-sort-name">
+      <h2>Sorted Teachers Details</h2>
+      <template
+        is="dom-repeat"
+        items="{{teachers_details}}"
+        as="teacher"
+        sort="nameSortFunction"
+      >
+        <ul>
+          <li>Name: {{teacher.name}}</li>
+          <li>ID: {{teacher.id}}</li>
+          <li>Department:{{teacher.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <div id="details-teacher-sort-id">
+      <h2>Sorted Teachers Details</h2>
+      <template
+        is="dom-repeat"
+        items="{{teachers_details}}"
+        as="teacher"
+        sort="idSortFunction"
+      >
+        <ul>
+          <li>Name: {{teacher.name}}</li>
+          <li>ID: {{teacher.id}}</li>
+          <li>Department:{{teacher.department}}</li>
+        </ul>
+      </template>
+    </div>
+    <div id="details">
+      <h2>Student List</h2>
+      <template is="dom-repeat" items="{{students_details}}" as="student">
+        <ul>
+          <li>Name: {{student.name}}</li>
+          <li>ID: {{student.id}}</li>
+          <li>Department:{{student.department}}</li>
+        </ul>
+      </template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "practice-code-seven",
+      properties: {
+        students_details: {
+          type: Array,
+          value: [
+            { name: "McKenzie", id: 47, department: "ECE", luckyNumber: 0 },
+            { name: "Dhoni", id: 67, department: "ECE", luckyNumber: 0 },
+            { name: "Messi", id: 57, department: "EEE", luckyNumber: 0 },
+            { name: "Ronaldo", id: 37, department: "EEE", luckyNumber: 0 },
+          ],
+        },
+        teachers_details: {
+          type: Array,
+          value: [
+            { name: "Kavin", id: 1739, department: "ECE", luckyNumber: 0 },
+            { name: "Ammar", id: 1735, department: "EEE", luckyNumber: 0 },
+            { name: "Kaiser", id: 1738, department: "ECE", luckyNumber: 0 },
+            { name: "Dhanush", id: 1725, department: "ECE", luckyNumber: 0 },
+          ],
+        },
+      },
+      getStudentLuckyNumber: function (e) {
+        var model = e.model;
+        var luckyNumber = Math.random() * 100;
+        model.student.luckyNumber = parseInt(luckyNumber);
+        model.set("student.luckyNumber", model.student.luckyNumber);
+        document.getElementsByClassName("studentLuckyNumber")[
+          model.index
+        ].style.display = "block";
+      },
+      getTeacherLuckyNumber: function (e) {
+        var model = e.model;
+        var luckyNumber = Math.random() * 100;
+        model.teacher.luckyNumber = parseInt(luckyNumber);
+        model.set("teacher.luckyNumber", model.teacher.luckyNumber);
+        document.getElementsByClassName("teacherLuckyNumber")[
+          model.index
+        ].style.display = "block";
+      },
+      filterStudentFunction: function (student) {
+        return student.department === "EEE";
+      },
+      filterTeacherFunction: function (teacher) {
+        return teacher.department === "EEE";
+      },
+      searchTeacherFunction: function (name) {
+        if (!name) {
+          return null;
+        } else {
+          name = name.toLowerCase();
+          return function (teacher) {
+            var teacherName = teacher.name.toLowerCase();
+            var teacherId = String(teacher.id);
+            var teacherDepartment = teacher.department.toLowerCase();
+            return (
+              teacherName.indexOf(name) != -1 ||
+              teacherId.indexOf(name) != -1 ||
+              teacherDepartment.indexOf(name) != -1
+            );
+          };
+        }
+      },
+      searchStudentFunction: function (name) {
+        if (!name) {
+          return null;
+        } else {
+          name = name.toLowerCase();
+          return function (student) {
+            var studentName = student.name.toLowerCase();
+            var studentId = String(student.id);
+            var studentDepartment = student.department.toLowerCase();
+            return (
+              studentName.indexOf(name) != -1 ||
+              studentId.indexOf(name) != -1 ||
+              studentDepartment.indexOf(name) != -1
+            );
+          };
+        }
+      },
+      nameSortFunction: function (a, b) {
+        var nameA = a.name.toUpperCase();
+        var nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      },
+      idSortFunction: function (a, b) {
+        var nameA = String(a.id);
+        var nameB = String(b.id);
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      },
+      studentSortName: function () {
+        document.getElementById("details-student-sort-name").style.display =
+          "block";
+        document.getElementById("details-student-sort").style.display = "none";
+        document.getElementById("details-student-sort-id").style.display =
+          "none";
+      },
+      studentSortId: function () {
+        document.getElementById("details-student-sort-id").style.display =
+          "block";
+        document.getElementById("details-student-sort").style.display = "none";
+        document.getElementById("details-student-sort-name").style.display =
+          "none";
+      },
+      teacherSortName: function () {
+        document.getElementById("details-teacher-sort-name").style.display =
+          "block";
+        document.getElementById("details-teacher-sort").style.display = "none";
+        document.getElementById("details-teacher-sort-id").style.display =
+          "none";
+      },
+      teacherSortId: function () {
+        document.getElementById("details-teacher-sort-id").style.display =
+          "block";
+        document.getElementById("details-teacher-sort").style.display = "none";
+        document.getElementById("details-teacher-sort-name").style.display =
+          "none";
+      },
+    });
+  </script>
+</dom-module>

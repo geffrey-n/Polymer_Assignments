@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../parent-behavior/parent-behavior.html" />
+<link rel="stylesheet" href="./assignment-five.css" />
+
+<dom-module id="assignment-five">
+  <template>
+    <div class="center">{{titleFunction()}}</div>
+    <table>
+      <tr>
+        <th>Teacher Details</th>
+        <th>Student Details</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="teacher-details">
+            <div class="center">Teacher Name: {{teacherDetails.name}}</div>
+            <div class="center">Teacher ID: {{teacherDetails.id}}</div>
+            <div class="center">
+              Teacher Department: {{teacherDetails.department}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="student-details">
+            <div class="center">Student Name: {{studentDetails.name}}</div>
+            <div class="center">Student ID: {{studentDetails.id}}</div>
+            <div class="center">
+              Student Department: {{studentDetails.department}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-five",
+      behaviors: [parentBehavior],
+      ready: function () {
+        this.helloFunction();
+      },
+    });
+  </script>
+</dom-module>

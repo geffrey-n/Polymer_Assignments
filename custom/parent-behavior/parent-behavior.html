@@ -1,0 +1,23 @@
+<script>
+  parentBehavior = {
+    properties: {
+      studentDetails: {
+        type: Object,
+        value: { name: "Geffrey", id: "037", department: "ECE" },
+      },
+      teacherDetails: {
+        type: Object,
+        value: { name: "McKenzie", id: "001", department: "ECE" },
+      },
+    },
+    helloFunction: function () {
+      console.log("Hello!!! This function is invoked from parent behavior");
+    },
+    titleFunction: function () {
+      return "The teacher and student details are displayed";
+    },
+    teacherFunction: function () {
+      return "The teacher detail is displayed";
+    },
+  };
+</script>

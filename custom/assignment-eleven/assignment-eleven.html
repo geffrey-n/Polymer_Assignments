@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../../bower_components/app-route/app-route.html" />
+<link rel="import" href="../../bower_components/app-route/app-location.html" />
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html" />
+<link rel="import" href="./assignment-student.html" />
+<link rel="import" href="./assignment-teacher.html" />
+<link rel="import" href="./assignment-home.html" />
+
+<dom-module id="assignment-eleven">
+  <style>
+    div {
+      padding: 5px;
+    }
+    a {
+      font-size: 2vw;
+    }
+  </style>
+  <template>
+    <div><a href="/home">Home</a></div>
+    <div><a href="/student">Student</a></div>
+    <div><a href="/teacher">Teacher</a></div>
+    <app-location route="{{route}}"></app-location>
+    <app-route
+      route="{{route}}"
+      pattern="/:view"
+      data="{{routeData}}"
+      tail="{{subroute}}"
+    ></app-route>
+    <iron-pages selected="[[routeData.view]]" attr-for-selected="route-val">
+      <assignment-student
+        route-val="student"
+        route="{{subroute}}"
+      ></assignment-student>
+      <assignment-teacher
+        route-val="teacher"
+        route="{{subroute}}"
+      ></assignment-teacher>
+      <assignment-home route-val="home" route="{{subroute}}"></assignment-home>
+    </iron-pages>
+  </template>
+
+  <script>
+    Polymer({
+      is: "assignment-eleven",
+    });
+  </script>
+</dom-module>

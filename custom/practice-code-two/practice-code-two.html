@@ -1,0 +1,32 @@
+<!-- Example for using $ and $$ -->
+<!-- Example for using strip white space -->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="practice-code-two">
+  <template strip-whitespace>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div class="name"></div>
+    <div class="name"></div>
+    <div class="name"></div>
+    <div class="name"></div>
+  </template>
+  <script>
+    Polymer({
+      is: "practice-code-two",
+      ready: function () {
+        this.$.one.innerHTML = "Hello ONE";
+        this.$.two.innerHTML = "Hello TWO";
+        this.$.three.innerHTML = "Hello THREE";
+        // this.$.name.innerHTML = "Hello Name";
+        this.$$(".name").innerHTML = "Hello first node";
+        console.log(
+          "LENGTH OF THE CHILD NODES:",
+          Polymer.dom(this.root).childNodes.length
+        );
+      },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,124 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="assignment-nine_two">
+  <template>
+    <style>
+      #input_details {
+        border: 2px goldenrod dotted;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+      }
+      #student_marks {
+        border: 3px goldenrod solid;
+        padding: 10px;
+      }
+      #student_marks > div {
+        font-size: 23px;
+      }
+      #student_marks > ul {
+        font-size: 20px;
+      }
+      h1 {
+        margin: 0;
+        text-align: center;
+      }
+      .value {
+        font-size: 25px;
+        font-weight: bolder;
+      }
+      label {
+        font-size: 20px;
+      }
+      input {
+        margin: 5px;
+        width: 150px;
+        border: 1px black solid;
+        font-size: 17px;
+      }
+    </style>
+    <div id="input_details">
+      <h1>Input Details</h1>
+      <div>
+        <label>Name of the Student</label>
+        <input
+          id="name_input"
+          value="{{nameStudent::input}}"
+          placeholder="Enter the name"
+        />
+      </div>
+      <div>
+        <label>Marks of the Student</label>
+        <ul>
+          <li>
+            <label>Maths:</label
+            ><input id="maths_input" value="{{mathsMark::input}}" />
+          </li>
+          <li>
+            <label>Physics:</label
+            ><input id="physics_input" value="{{physicsMark::input}}" />
+          </li>
+          <li>
+            <label>Chemistry:</label
+            ><input id="chemistry_input" value="{{chemistryMark::input}}" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="student_marks">
+      <h1>Student Marks</h1>
+      <div>Name of the Student: <span class="value">{{nameStudent}}</span></div>
+      <ul>
+        <li>Maths Mark: <span class="value">{{mathsMark}}</span></li>
+        <li>Physics Mark: <span class="value">{{physicsMark}}</span></li>
+        <li>Chemistry Mark: <span class="value">{{chemistryMark}}</span></li>
+      </ul>
+      <div>
+        The total of three subjects:
+        <span class="value">{{total}}</span>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-nine_two",
+      properties: {
+        nameStudent: {
+          type: String,
+        },
+        mathsMark: {
+          type: Number,
+          value: 0,
+        },
+        physicsMark: {
+          type: Number,
+          value: 0,
+        },
+        chemistryMark: {
+          type: Number,
+          value: 0,
+        },
+      },
+      observers: ["totalFunction(mathsMark, physicsMark, chemistryMark)"],
+      totalFunction: function (mathsMark, physicsMark, chemistryMark) {
+        if (mathsMark == "") {
+          mathsMark = 0;
+        } else {
+          mathsMark = parseInt(mathsMark);
+        }
+        if (physicsMark == "") {
+          physicsMark = 0;
+        } else {
+          physicsMark = parseInt(physicsMark);
+        }
+        if (chemistryMark == "") {
+          chemistryMark = 0;
+        } else {
+          chemistryMark = parseInt(chemistryMark);
+        }
+        var total = mathsMark + physicsMark + chemistryMark;
+        this.set("total", total);
+      },
+    });
+  </script>
+</dom-module>

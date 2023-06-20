@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="stylesheet" href="./assignment-three.css" />
+
+<dom-module id="assignment-three">
+  <template>
+    <div class="student-detail">
+      <div>Student Name: {{fullName}}</div>
+      <div>Student ID: {{studId}}</div>
+      <div>Sports-Quota: {{sportsQuota}}</div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-three",
+      properties: {
+        firstName: {
+          type: String,
+        },
+        lastName: {
+          type: String,
+        },
+        studId: {
+          type: Number,
+        },
+        sportsQuota: {
+          type: Boolean,
+          value: false,
+        },
+        fullName: {
+          computed: "fullNameStudent(firstName,lastName)",
+        },
+      },
+      fullNameStudent: function (first, last) {
+        return first + " " + last;
+      },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="assignment-four">
+  <template>
+    <style>
+      p {
+        font-size: 1.5vw;
+        text-align: center;
+        color: seagreen;
+      }
+      button {
+        width: 30vw;
+        height: 3vw;
+        font-size: 1.5vw;
+      }
+      div {
+        text-align: center;
+      }
+    </style>
+    <p>
+      The function is called when event click is fired and the student details
+      are consoled
+    </p>
+    <!-- <div>
+      <button>Click to display student details</button>
+    </div> -->
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-four",
+      studentName: "Geffrey",
+      studentId: "037",
+      studentDetails: function () {
+        console.log(
+          `The name of the student is ${this.studentName}\nThe student ID of ${this.studentName} is ${this.studentId}`
+        );
+      },
+    });
+  </script>
+</dom-module>

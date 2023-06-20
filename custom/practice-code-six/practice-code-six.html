@@ -1,0 +1,15 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="practice-code-six">
+  <script>
+    Polymer({
+      is: "practice-code-six",
+      attached: function () {
+        var newInstance = document.querySelector("practice-code-five");
+        newInstance.addEventListener("new-click", function () {
+          alert("I am tappig using custom event");
+        });
+      },
+    });
+  </script>
+</dom-module>

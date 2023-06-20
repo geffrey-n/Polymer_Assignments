@@ -1,0 +1,344 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="stylesheet" href="./assignment-eight.css" />
+
+<dom-module id="assignment-eight">
+  <template>
+    <style>
+      #entire_details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      #student_detail {
+        border: 3px black solid;
+        margin-bottom: 10px;
+        width: 350px;
+      }
+      h1 {
+        text-align: center;
+        margin: 0;
+      }
+      h3 {
+        margin: 0;
+      }
+      input {
+        margin: 20px 0px 10px 0px;
+        border: 1px black solid;
+        font-size: 15px;
+      }
+      label {
+        font-size: 20px;
+      }
+      #search_buttons {
+        display: grid;
+        grid-template-columns: 78% 10% 10%;
+      }
+      button {
+        font-size: 15px;
+        margin-top: 15px;
+        height: max-content;
+        width: max-content;
+      }
+    </style>
+    <div id="studentDetails">
+      {{neName}}
+      <h1>Student Details</h1>
+      <div id="search_buttons">
+        <div>
+          <label>Search for Student:</label>
+          <input value="{{searchStudentName::input}}" />
+        </div>
+        <button id="name_sort" on-click="nameSort">Name Sort</button>
+        <button id="average_sort" on-click="averageSort">Average Sort</button>
+      </div>
+      <div id="entire_details">
+        <template
+          is="dom-repeat"
+          items="{{studentDetails}}"
+          as="student"
+          filter="{{searchStudentFunction(searchStudentName)}}"
+        >
+          <div id="student_detail">
+            <ul>
+              <li>Student Name: {{student.name.value}}</li>
+              <li>Student Id: {{student.id.value}}</li>
+              <li>
+                <h3>Mark of {{student.name.value}} in five subjects</h3>
+                <ul>
+                  <li>Tamil: {{student.marks.tamil.value}}</li>
+                  <li>English: {{student.marks.english.value}}</li>
+                  <li>Maths: {{student.marks.maths.value}}</li>
+                  <li>Science: {{student.marks.science.value}}</li>
+                  <li>Social: {{student.marks.social.value}}</li>
+                </ul>
+              </li>
+              <li>Average of five subjects: {{averageFunction(student)}}</li>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "assignment-eight",
+      properties: {
+        studentDetails: {
+          type: Array,
+          value: [
+            {
+              name: { type: String, value: "Geffrey" },
+              id: { type: Number, value: 1 },
+              marks: {
+                tamil: { type: Number, value: 95 },
+                english: { type: Number, value: 95 },
+                maths: { type: Number, value: 95 },
+                science: { type: Number, value: 95 },
+                social: { type: Number, value: 95 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Vijai" },
+              id: { type: Number, value: 2 },
+              marks: {
+                tamil: { type: Number, value: 98 },
+                english: { type: Number, value: 99 },
+                maths: { type: Number, value: 97 },
+                science: { type: Number, value: 100 },
+                social: { type: Number, value: 100 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Hari" },
+              id: { type: Number, value: 3 },
+              marks: {
+                tamil: { type: Number, value: 64 },
+                english: { type: Number, value: 63 },
+                maths: { type: Number, value: 69 },
+                science: { type: Number, value: 85 },
+                social: { type: Number, value: 75 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Jishnu" },
+              id: { type: Number, value: 4 },
+              marks: {
+                tamil: { type: Number, value: 54 },
+                english: { type: Number, value: 74 },
+                maths: { type: Number, value: 56 },
+                science: { type: Number, value: 84 },
+                social: { type: Number, value: 91 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "McKenzie" },
+              id: { type: Number, value: 5 },
+              marks: {
+                tamil: { type: Number, value: 54 },
+                english: { type: Number, value: 38 },
+                maths: { type: Number, value: 83 },
+                science: { type: Number, value: 64 },
+                social: { type: Number, value: 46 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Ammar" },
+              id: { type: Number, value: 6 },
+              marks: {
+                tamil: { type: Number, value: 59 },
+                english: { type: Number, value: 42 },
+                maths: { type: Number, value: 85 },
+                science: { type: Number, value: 75 },
+                social: { type: Number, value: 65 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Dhanush" },
+              id: { type: Number, value: 7 },
+              marks: {
+                tamil: { type: Number, value: 77 },
+                english: { type: Number, value: 65 },
+                maths: { type: Number, value: 68 },
+                science: { type: Number, value: 57 },
+                social: { type: Number, value: 81 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Kaiser" },
+              id: { type: Number, value: 8 },
+              marks: {
+                tamil: { type: Number, value: 81 },
+                english: { type: Number, value: 47 },
+                maths: { type: Number, value: 74 },
+                science: { type: Number, value: 63 },
+                social: { type: Number, value: 83 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Kavin" },
+              id: { type: Number, value: 9 },
+              marks: {
+                tamil: { type: Number, value: 97 },
+                english: { type: Number, value: 78 },
+                maths: { type: Number, value: 86 },
+                science: { type: Number, value: 64 },
+                social: { type: Number, value: 45 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Keerthi" },
+              id: { type: Number, value: 10 },
+              marks: {
+                tamil: { type: Number, value: 45 },
+                english: { type: Number, value: 75 },
+                maths: { type: Number, value: 35 },
+                science: { type: Number, value: 61 },
+                social: { type: Number, value: 84 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Kishor" },
+              id: { type: Number, value: 11 },
+              marks: {
+                tamil: { type: Number, value: 45 },
+                english: { type: Number, value: 63 },
+                maths: { type: Number, value: 36 },
+                science: { type: Number, value: 81 },
+                social: { type: Number, value: 38 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+            {
+              name: { type: String, value: "Kamil" },
+              id: { type: Number, value: 12 },
+              marks: {
+                tamil: { type: Number, value: 97 },
+                english: { type: Number, value: 58 },
+                maths: { type: Number, value: 85 },
+                science: { type: Number, value: 79 },
+                social: { type: Number, value: 54 },
+              },
+              average: {
+                type: Number,
+                value: 0,
+              },
+            },
+          ],
+        },
+      },
+      averageFunction: function (student) {
+        var tamil = student.marks.tamil.value;
+        var english = student.marks.english.value;
+        var maths = student.marks.maths.value;
+        var science = student.marks.science.value;
+        var social = student.marks.social.value;
+        var average = (tamil + english + maths + science + social) / 5;
+        student.average.value = average;
+        return average;
+      },
+      searchStudentFunction: function (name) {
+        if (!name) {
+          return null;
+        } else {
+          name = name.toLowerCase();
+          return function (student) {
+            var studentName = student.name.value.toLowerCase();
+            var studentId = String(student.id.value);
+            return (
+              studentName.indexOf(name) != -1 || studentId.indexOf(name) != -1
+            );
+          };
+        }
+      },
+      searchSortStudentFunction: function (name) {
+        if (!name) {
+          return null;
+        } else {
+          name = name.toLowerCase();
+          return function (student) {
+            var studentName = student.name.value.toLowerCase();
+            var studentId = String(student.id.value);
+            return (
+              studentName.indexOf(name) != -1 || studentId.indexOf(name) != -1
+            );
+          };
+        }
+      },
+      nameSort: function () {
+        let nameSortedStudentDetails = [...this.studentDetails];
+        this.nameSortFunction(nameSortedStudentDetails);
+        this.set("studentDetails", nameSortedStudentDetails);
+      },
+      nameSortFunction: function (student_data) {
+        student_data.sort((a, b) => {
+          if (a.name.value < b.name.value) {
+            return -1;
+          }
+          if (a.name.value > b.name.value) {
+            return 1;
+          }
+          return 0;
+        });
+      },
+      averageSort: function () {
+        let averageSortedStudentDetails = [...this.studentDetails];
+        this.averageSortFunction(averageSortedStudentDetails);
+        this.set("studentDetails", averageSortedStudentDetails);
+      },
+      averageSortFunction: function (student_data) {
+        student_data.sort((a, b) => {
+          if (a.average.value < b.average.value) {
+            return -1;
+          }
+          if (a.average.value > b.average.value) {
+            return 1;
+          }
+          return 0;
+        });
+      },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<dom-module id="practice-code-five">
+  <template>
+    <style>
+      :root {
+        margin-bottom: 25px;
+      }
+    </style>
+    <div id="old">Tapping event</div>
+    <div on-tap="newTap">New tapping event</div>
+    <div id="listen_unlisten">Event using listen and unlisten</div>
+    <div on-tap="customEvent">It is an custom event</div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "practice-code-five",
+      attached: function () {
+        this.listen(this.$.listen_unlisten, "tap", "imperativeTap");
+      },
+      // detached: function () {
+      //   this.unlisten(this.$.listen_unlisten, "tap", "imperativeTap");
+      // },
+      listeners: {
+        "old.tap": "defaultTap",
+      },
+      defaultTap: function (e) {
+        alert("I am tapping the old event");
+      },
+      newTap: function (e) {
+        alert("I am tapping new event");
+      },
+      imperativeTap: function () {
+        alert("It is triggered imperatively");
+      },
+      customEvent: function () {
+        this.fire("new-click");
+      },
+    });
+  </script>
+</dom-module>
