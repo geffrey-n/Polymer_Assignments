@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Polymer Training</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="./bower_components/polymer/polymer.html" />
+    <link rel="import" href="./custom/main-element/main-element.html" />
+  </head>
+  <body>
+    <!-- Defining the root element -->
+    <dom-module id="root-element">
+      <template>
+        <style>
+          p {
+            color: tomato;
+            text-align: center;
+            font-size: 2vw;
+            padding-bottom: 2vw;
+          }
+        </style>
+        <p>Hi!!! This Polymer CLI</p>
+      </template>
+      <script>
+        HTMLImports.whenReady(function () {
+          Polymer({
+            is: "root-element",
+          });
+        });
+      </script>
+    </dom-module>
+    <!-- ************************************************************** -->
+    <!-- Calling the root element -->
+    <h4>Defining the polymer function in root element:</h4>
+    <root-element></root-element>
+    <h3>******************************************</h3>
+    <!-- Calling the main element -->
+    <main-element></main-element>
+  </body>
+</html>
+<!-- ******************************************************************** -->

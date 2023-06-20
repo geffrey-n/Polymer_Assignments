@@ -1,0 +1,21 @@
+{
+  "name": "polymer_training",
+  "authors": [
+    "Geffrey <geffrey.nirmal@solitontech.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "hello-world-element": "^1.1.0",
+    "app-route": "PolymerElements/app-route#^3.0.2"
+  }
+}
